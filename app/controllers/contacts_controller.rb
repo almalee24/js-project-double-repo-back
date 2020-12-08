@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-    before_action :set_contact, only: [:show, :update, :destory]
+    before_action :set_contact, only: [:show, :edit, :update, :destory]
 
     # GET /contacts
     def index
@@ -7,12 +7,18 @@ class ContactsController < ApplicationController
         render json: @contacts: [:first_name, :last_name, :email]
     end
 
-    # GET /positions/1
+    # GET /contacts/1
     def show
         render json: @contact
     end
 
-    # POSTS /posts
+    #POST /contact/1
+    def new
+        @contact = Contact.new
+        5.times{@contact.connections.build}
+    end
+
+    # POSTS /contacts
     def create
         @contact = Contact.new(contact_params)
 
@@ -23,7 +29,14 @@ class ContactsController < ApplicationController
         end
     end
 
-    # PATCH/PUT /positions/1
+    # PATCH/PUT /contacts/1
+    def edit
+        if !@contact 
+            render json: @contact
+        end
+    end
+
+    # PATCH/PUT /contacts/1
     def update
         if @contact.update(contact_params)
             render json: @contact_params
@@ -32,7 +45,7 @@ class ContactsController < ApplicationController
         end
     end
 
-    # DELETE /positions/1
+    # DELETE /contacts/1
     def destory
         @contact.destory
         render json: @contact
@@ -45,6 +58,6 @@ class ContactsController < ApplicationController
         end
 
         def position_params
-            params.require(:contact).permit(:first_name, :last_name, :email, :company_name, :job_title)
+            params.require(:contact).permit(:first_name, :last_name, :email, :company_name, :job_title, connections_attributes: [:id, :contact_date, :take_away])
         end
 end
