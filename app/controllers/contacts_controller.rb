@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
     # GET /contacts
     def index
         @contacts = Contact.all
-        render json: @contacts: [:first_name, :last_name, :email]
+        render json: @contacts
     end
 
     # GET /contacts/1
@@ -23,7 +23,7 @@ class ContactsController < ApplicationController
         @contact = Contact.new(contact_params)
 
         if @contact.save
-            render json: @contact
+            render json: @contact, status: :created, location: @contact
         else   
             render json: {errors: @contact.errors.full_messages.to_sentence}
         end
@@ -39,7 +39,7 @@ class ContactsController < ApplicationController
     # PATCH/PUT /contacts/1
     def update
         if @contact.update(contact_params)
-            render json: @contact_params
+            render json: @contact
         else   
             render json: {errors: @contact.errors.full_messages.to_sentence}
         end
@@ -48,7 +48,6 @@ class ContactsController < ApplicationController
     # DELETE /contacts/1
     def destory
         @contact.destory
-        render json: @contact
     end
 
     private 

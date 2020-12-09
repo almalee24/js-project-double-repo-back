@@ -3,8 +3,8 @@ class PositionsController < ApplicationController
 
     # GET /positions
     def index
-        positions = Position.all
-        render json: positions, include: [:title, :company_name, :location]
+        @positions = Position.all
+        render json: @postions
     end
 
     # GET /positions/1
@@ -17,7 +17,7 @@ class PositionsController < ApplicationController
         @position = Position.new(position_params)
 
         if @position.save
-            render json: @position
+            render json: @position, status: :created, location: @position
         else   
             render json: {errors: @position.errors.full_messages.to_sentence}
         end
@@ -26,7 +26,7 @@ class PositionsController < ApplicationController
     # PATCH/PUT /positions/1
     def update
         if @positon.update(position_params)
-            render json: @position_params
+            render json: @position
         else   
             render json: {errors: @position.errors.full_messages.to_sentence}
         end
@@ -35,7 +35,6 @@ class PositionsController < ApplicationController
     # DELETE /positions/1
     def destory
         @position.destory
-        render json: @position
     end
 
     private 
