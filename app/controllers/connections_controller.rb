@@ -5,6 +5,7 @@ class ConnectionsController < ApplicationController
     if params[:contact_id]
       set_contact
       @connections = @contact.connections
+      render json: @connections
     else    
       @connections = Connection.all
     end
@@ -20,17 +21,21 @@ class ConnectionsController < ApplicationController
     if params[:contact_id]
       set_contact
       @connection = @contact.connections.build
+      render json: @connection
     else    
       @connection = Connection.new
+      render json: @connection
     end
   end
 
   def create
     if params[:contact_id]
       set_contact
-     @connection = @contact.connections.build(connection_params)
+      @connection = @contact.connections.build(connection_params)
+      render json: @connection 
     else    
       @connection = Connection.new(connection_params)
+      render json: @connection
     end
     if @connection.save
       if @contact 
