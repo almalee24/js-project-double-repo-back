@@ -3,8 +3,8 @@ class PositionsController < ApplicationController
 
     # GET /positions
     def index
-        @positions = Position.all
-        render json: @positions: [:title, :company_name, :location]
+        positions = Position.all
+        render json: positions, include: [:title, :company_name, :location]
     end
 
     # GET /positions/1

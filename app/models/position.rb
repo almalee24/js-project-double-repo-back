@@ -1,5 +1,5 @@
 class Position < ApplicationRecord
-    belongs_to
+    belongs_to :user, optional: true 
 
     validates :company_name, presence: true
     validates :location, presence: true
