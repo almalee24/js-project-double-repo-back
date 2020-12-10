@@ -1,72 +1,44 @@
 class ConnectionsController < ApplicationController
-  before_action :set_connection, only: [:show]
+  before_action :set_connection, only: [:show, :update, :destroy]
 
-  def index
-    if params[:contact_id]
-      set_contact
-      @connections = @contact.connections
-      render json: @connections
-    else    
+  def index  
       @connections = Connection.all
-    end
+
+      render json: @connections
   end
 
   def show
-    if params[:contact_id]
-      set_contact
-    end
-  end
-
-  def new
-    if params[:contact_id]
-      set_contact
-      @connection = @contact.connections.build
-      render json: @connection
-    else    
-      @connection = Connection.new
-      render json: @connection
-    end
+    render json: @connection
   end
 
   def create
-    if params[:contact_id]
-      set_contact
-      @connection = @contact.connections.build(connection_params)
-      render json: @connection 
-    else    
-      @connection = Connection.new(connection_params)
-      render json: @connection
-    end
-    if @connection.save
-      if @contact 
-        render json: @connection   
-      else    
-        render json: @connection
-      end
-    else   
-      render :new
-    end
-  end
+    @connection = Connection.new(connection_params)
 
-  def edit
+    if @connection.save
+      render json: @connection, status: :created, location: @connection
+    else   
+      render json: @connection.errors, status: :unprocessable_entity
+    end
   end
 
   def update
+    if @connection.update(connection_params)
+      render json: @piglet  
+    else   
+      render json: @piglet.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @position.destroy
   end
 
   private  
-    def set_contact
-      @contact = Contact.find_by_id(params[:contact_id])
-    end
-
     def set_connection
-      @connection = Connection.find_by_id(params[:id])
+      @connection = Connection.find(params[:id])
     end
 
     def connection_params
-      params.require(:connection).permit(:contact_date, :take_away)
+      params.require(:connection).permit(:contact_date, :take_away, :contact_id)
     end
 end
