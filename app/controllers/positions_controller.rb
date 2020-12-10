@@ -4,6 +4,7 @@ class PositionsController < ApplicationController
     # GET /positions
     def index
         @positions = Position.all
+         
         render json: @positions
     end
 
@@ -19,7 +20,7 @@ class PositionsController < ApplicationController
         if @position.save
             render json: @position, status: :created, location: @position
         else   
-            render json: {errors: @position.errors.full_messages.to_sentence}
+            render json: @position.errors, status: :unprocessable_entity
         end
     end
 
@@ -28,7 +29,7 @@ class PositionsController < ApplicationController
         if @positon.update(position_params)
             render json: @position
         else   
-            render json: {errors: @position.errors.full_messages.to_sentence}
+            render json: @position.errors, status: :unprocessable_entity
         end
     end
 
@@ -44,6 +45,6 @@ class PositionsController < ApplicationController
         end
 
         def position_params
-            params.require(:position).permit(:company_name, :title, :location, :description, :applied, :applied_date)
+            params.require(:position).permit(:company_name, :title, :location, :description, :applied, :applied_date, :user_id)
         end
 end
