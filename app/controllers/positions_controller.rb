@@ -26,7 +26,7 @@ class PositionsController < ApplicationController
 
     # PATCH/PUT /positions/1
     def update
-        if @positon.update(position_params)
+        if @position.update(position_params)
             render json: @position
         else   
             render json: @position.errors, status: :unprocessable_entity
@@ -34,8 +34,8 @@ class PositionsController < ApplicationController
     end
 
     # DELETE /positions/1
-    def destory
-        @position.destory
+    def destroy
+        @position.destroy
     end
 
     private 

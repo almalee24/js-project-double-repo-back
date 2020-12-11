@@ -33,8 +33,8 @@ class ContactsController < ApplicationController
     end
 
     # DELETE /contacts/1
-    def destory
-        @contact.destory
+    def destroy
+        @contact.destroy
     end
 
     private 
