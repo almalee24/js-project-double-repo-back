@@ -23,14 +23,14 @@ class ConnectionsController < ApplicationController
 
   def update
     if @connection.update(connection_params)
-      render json: @piglet  
+      render json: @connection
     else   
-      render json: @piglet.errors, status: :unprocessable_entity
+      render json: @connection.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @position.destroy
+    @connection.destroy
   end
 
   private  

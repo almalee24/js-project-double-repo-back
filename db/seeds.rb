@@ -122,88 +122,51 @@ Connection.create([
 {
     contact_date: Time.now - 1.week, 
     take_away: Faker::TvShows::BigBangTheory.quote,
-    user_id: 1
+    contact: Contact.all.sample
 },
 {
     contact_date: Time.now - 2.week, 
     take_away: Faker::TvShows::BigBangTheory.quote,
-    user_id: 1
+    contact: Contact.all.sample
 },
 {
-    contact_date: Time.now - 3.week, 
+    contact_date: Time.now - 1.week, 
     take_away: Faker::TvShows::BigBangTheory.quote,
-    user_id: 1
+    contact: Contact.all.sample
+},
+{
+    contact_date: Time.now - 2.week, 
+    take_away: Faker::TvShows::BigBangTheory.quote,
+    contact: Contact.all.sample
+},
+{
+    contact_date: Time.now - 1.week, 
+    take_away: Faker::TvShows::BigBangTheory.quote,
+    contact: Contact.all.sample
+},
+{
+    contact_date: Time.now - 2.week, 
+    take_away: Faker::TvShows::BigBangTheory.quote,
+    contact: Contact.all.sample
+},
+{
+    contact_date: Time.now - 1.week, 
+    take_away: Faker::TvShows::BigBangTheory.quote,
+    contact: Contact.all.sample
+},
+{
+    contact_date: Time.now - 2.week, 
+    take_away: Faker::TvShows::BigBangTheory.quote,
+    contact: Contact.all.sample
+},
+{
+    contact_date: Time.now - 1.week, 
+    take_away: Faker::TvShows::BigBangTheory.quote,
+    contact: Contact.all.sample
+},
+{
+    contact_date: Time.now - 2.week, 
+    take_away: Faker::TvShows::BigBangTheory.quote,
+    contact: Contact.all.sample
 }
-])
-
-Connection.create([
-    {
-        contact_date: Time.now - 1.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 2
-    },
-    {
-        contact_date: Time.now - 2.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 2
-    },
-    {
-        contact_date: Time.now - 3.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 2
-    }
-])
-
-Connection.create([
-    {
-        contact_date: Time.now - 1.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 3
-    },
-    {
-        contact_date: Time.now - 2.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 3
-    },
-    {
-        contact_date: Time.now - 3.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 3
-    }
-])
-
-Connection.create([
-    {
-        contact_date: Time.now - 1.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 4
-    },
-    {
-        contact_date: Time.now - 2.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 4
-    },
-    {
-        contact_date: Time.now - 3.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 4
-    }
-])
-
-Connection.create([
-    {
-        contact_date: Time.now - 1.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 5
-    },
-    {
-        contact_date: Time.now - 2.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 5
-    },
-    {
-        contact_date: Time.now - 3.week, 
-        take_away: Faker::TvShows::BigBangTheory.quote,
-        user_id: 5
-    }
 ])
