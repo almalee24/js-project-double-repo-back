@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-    before_action :set_contact, only: [:show, :edit, :update, :destory]
+    before_action :set_contact, only: [:show, :update, :destory]
 
     # GET /contacts
     def index
@@ -12,12 +12,6 @@ class ContactsController < ApplicationController
         render json: @contact.as_json(include: {connections: {only:[:id, :contact_date, :take_away]}})
     end
 
-    #POST /contact/1
-    def new
-        @contact = Contact.new
-        5.times{@contact.connections.build}
-    end
-
     # POSTS /contacts
     def create
         @contact = Contact.new(contact_params)
@@ -26,13 +20,6 @@ class ContactsController < ApplicationController
             render json: @contact, status: :created, location: @contact
         else   
             render json: @contact.erros, status: :unprocessable_entity
-        end
-    end
-
-    # PATCH/PUT /contacts/1
-    def edit
-        if !@contact 
-            render json: @contact
         end
     end
 
@@ -57,6 +44,6 @@ class ContactsController < ApplicationController
         end
 
         def position_params
-            params.require(:contact).permit(:first_name, :last_name, :email, :company_name, :job_title, connections_attributes: [:id, :contact_date, :take_away, :contact_id])
+            params.require(:contact).permit(:first_name, :last_name, :email, :company_name, :job_title, connections_attributes: [:contact_date, :take_away, :contact_id])
         end
 end
