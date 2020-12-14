@@ -1,5 +1,5 @@
 class PositionsController < ApplicationController
-    before_action :set_positon, only: [:show, :update, :destory]
+    before_action :set_positon, only: [:show, :update, :destroy]
 
     # GET /positions
     def index
